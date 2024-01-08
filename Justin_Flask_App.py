@@ -29,6 +29,13 @@ posts = {
     }
 }
 
+"""
+Create - Post
+Retrieve - Get
+Update
+Delete
+"""
+
 #user routes
 
 # @app.route('/user', methods=['GET'])
@@ -50,8 +57,31 @@ def create_user():
 # def user2():
 #     return { 'users': list(users.values())}
 
+@app.put('/user')
+def update_user():
+    return
+
+@app.delete('/user')
+def delete_user():
+    pass
+
 #post routes  
 
+@app.get('/post')
+def get_posts():
+    return
+
+@app.post('/post')
+def create_post():
+    return
+
+@app.put('/post')
+def update_post():
+    return
+
+@app.delete('/post')
+def delete_post():
+    return 
 
 
  
