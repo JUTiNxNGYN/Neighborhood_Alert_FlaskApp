@@ -1,1 +1,4 @@
 pp-venv/
+.env
+migrations
+_pycache_
