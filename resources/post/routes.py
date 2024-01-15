@@ -51,6 +51,7 @@ class PostList(MethodView):
     try:
       post = PostModel()
       post.user_id = get_jwt_identity() 
+      post.title = post_data['title']
       post.body = post_data['body']
       post.commit()
       return { 'message': "Post Created" }, 201

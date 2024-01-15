@@ -44,7 +44,6 @@ class UserModel(db.Model):
         setattr(self, k, v)
       else:
         setattr(self, 'password_hash', generate_password_hash(v))
-        # self.password_hash = v
 
   def check_password(self, password):
     return check_password_hash(self.password_hash, password)
@@ -64,21 +63,23 @@ class UserModel(db.Model):
 
 class PostModel(db.Model):
 
-  __tablename__ = 'posts'
+    __tablename__ = 'posts'
 
-  id = db.Column(db.Integer, primary_key = True)
-  body = db.Column(db.String, nullable = False)
-  timestamp = db.Column(db.DateTime, default = datetime.utcnow)
-  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
-  user = db.relationship('UserModel', back_populates = 'posts')
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String, nullable = False)
+    workout = db.Column(db.String, nullable = False)
+    weight = db.Column(db.String, nullable = False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+    user = db.relationship('UserModel', back_populates = 'posts')
 
-  def __repr__(self):
-    return f'<Post: {self.body}>'
-  
-  def commit(self):
-    db.session.add(self)
-    db.session.commit()
+    def __repr__(self):
+        return f'<Post: {self.title}{self.body}>'
 
-  def delete(self):
-    db.session.delete(self)
-    db.session.commit()
+    def commit(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
